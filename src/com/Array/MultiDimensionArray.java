@@ -8,11 +8,16 @@ public class MultiDimensionArray {
     public MultiDimensionArray(int[] arg){
         dimensions = new int[arg.length];
         factors = new int[arg.length];
-        int product = 1;
+        int product = 0;
+        for(int i = 0 ; i < arg.length ; i++){
+            if(arg[i] == 0){
+                System.out.println("The input data can't contain zero value!");
+            }
+        }
         for(int i = 0; i < arg.length ; i++){
-            dimensions[i] = arg[i];
-            factors[i] = product;
-            product *= dimensions[i];
+            dimensions[i] = arg[i];   // store array dimensions
+            product += dimensions[i]; // store every dimension of array, how long it is
+            factors[i] = product;     // product calculate the number of data
         }
 
         data = new Object[product];
@@ -25,7 +30,7 @@ public class MultiDimensionArray {
 
         int offset = 0;
 
-        for(int i = 0 ; i < dimensions.length; ++i){
+        for(int i = 0 ; i < dimensions.length; i++){
             if(indices[i] < 0 || indices[i] >= dimensions[i]) throw new IndexOutOfBoundsException();
             offset += factors[i] * indices[i];
         }
