@@ -5,5 +5,6 @@ public interface Matrix {
     void put(int i, int j, double d);
     Matrix transpose ();
     Matrix plus(Matrix matrix);
+    Matrix subtraction(Matrix matrix);
     Matrix multiplication(Matrix matrix);
 }

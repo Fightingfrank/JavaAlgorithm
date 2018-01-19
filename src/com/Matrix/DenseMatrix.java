@@ -37,12 +37,49 @@ public class DenseMatrix implements Matrix{
 
     @Override
     public Matrix transpose() {
-        return null;
+        Matrix result= new DenseMatrix(this.numberOfColumns,this.getNumberOfRows());
+        for(int i = 0 ; i < this.getNumberOfRows() ; i++){
+            for(int j = 0 ; j < this.getNumberOfColumns() ; j++){
+                result.put(j,i,this.get(i,j));
+            }
+        }
+        return result;
     }
 
     @Override
     public Matrix plus(Matrix matrix) {
-        return null;
+        DenseMatrix dMatrix = (DenseMatrix)matrix;
+        if(dMatrix.getNumberOfColumns() != this.getNumberOfColumns() || dMatrix.getNumberOfRows() != this.getNumberOfRows()){
+            System.out.println("only two matrixs have same m*n could make plus operation making sense.");
+            return null;
+        }
+
+        DenseMatrix result = new DenseMatrix(dMatrix.getNumberOfRows(),dMatrix.getNumberOfColumns());
+        for(int i = 0 ; i < result.getNumberOfRows(); i++){
+            for(int j = 0 ; j < result.getNumberOfColumns(); j++){
+                result.put(i,j,this.get(i,j)+dMatrix.get(i,j));
+            }
+        }
+
+        return result;
+    }
+
+    @Override
+    public Matrix subtraction(Matrix matrix) {
+        DenseMatrix dMatrix = (DenseMatrix)matrix;
+        if(dMatrix.getNumberOfColumns() != this.getNumberOfColumns() || dMatrix.getNumberOfRows() != this.getNumberOfRows()){
+            System.out.println("only two matrixs have same m*n could make plus operation making sense.");
+            return null;
+        }
+
+        DenseMatrix result = new DenseMatrix(dMatrix.getNumberOfRows(),dMatrix.getNumberOfColumns());
+        for(int i = 0 ; i < result.getNumberOfRows(); i++){
+            for(int j = 0 ; j < result.getNumberOfColumns(); j++){
+                result.put(i,j,this.get(i,j)-dMatrix.get(i,j));
+            }
+        }
+
+        return result;
     }
 
     @Override
